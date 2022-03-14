@@ -25,7 +25,7 @@ const operate = function (operator, a, b) {
         return multiply(a, b)
     } else if (operator === 'divide') {
         return divide(a, b)
-    } else return 'ERROR'
+    } else return '0'
 }
 
 const screen = document.getElementById('screen')
@@ -37,44 +37,67 @@ const backButton = document.getElementById('back')
 let operatedValue = '';
 let valueToOperate = '';
 let desiredOperation
+let totallyEvaluated = false
+let result
 
 document.querySelectorAll('.number').forEach(item => {
     item.addEventListener('click', () => {
-        if (screen.innerText === '0' && item.textContent !== '.') {
-            screen.innerText = item.textContent;
-            return;
+        if (!totallyEvaluated) {
+            if (screen.innerText === '0' && item.innerText !== '.') {
+                screen.innerText = item.innerText;
+                return;
+            }
+            if (screen.innerText.includes('.') && item.innerText === '.') {
+                return
+            }
+            screen.innerText += item.innerText
         }
-        if (screen.innerText.includes('.') && item.textContent === '.') {
-            return
+        else {
+            screen.innerText = item.innerText
+            totallyEvaluated = 0
         }
-        screen.innerText += item.textContent
     })
 })
 
 document.querySelectorAll('.operate').forEach((item => {
     item.addEventListener('click', () => {
-        operatedValue = parseFloat(topScreen.textContent)
+        operatedValue = parseFloat(topScreen.innerText)
         valueToOperate = parseFloat(screen.innerText)
         if (isNaN(operatedValue)) {
             operatedValue = valueToOperate
-            topScreen.textContent = operatedValue
+            topScreen.innerText = operatedValue
             screen.innerText = '0'
         } else if (operatedValue) {
-            topScreen.textContent = operate(desiredOperation, operatedValue, valueToOperate)
+            result = operate(desiredOperation, operatedValue, valueToOperate)
+            topScreen.innerText = (Math.round(result * 1000000000) / 1000000000).toString()
             screen.innerText = '0'
         }
         desiredOperation = item.id
     })
 }))
+let memorizedNumber = 0;
 
 clearButton.addEventListener('click', () => {
     screen.innerText = `0`
     topScreen.innerText = ``
+    totallyEvaluated = false
+    memorizedNumber = 0
 })
 
 equalsButton.addEventListener('click', () => {
-    screen.innerText = operate(desiredOperation, parseFloat(topScreen.textContent), parseFloat(screen.innerText))
-    topScreen.innerText = ``
+    if (memorizedNumber === 0) {
+        memorizedNumber = parseFloat(screen.innerText)
+    }
+    if (topScreen.innerText === '' && screen.innerText !== '0') {
+        result = operate(desiredOperation, parseFloat(screen.innerText), memorizedNumber)
+        screen.innerText = (Math.round(result * 1000000000) / 1000000000).toString()
+        totallyEvaluated = true
+    } else {
+        result = operate(desiredOperation, parseFloat(topScreen.innerText), parseFloat(screen.innerText))
+        screen.innerText = (Math.round(result * 1000000000) / 1000000000).toString()
+        topScreen.innerText = ``
+        totallyEvaluated = true
+    }
 })
 
 backButton.addEventListener('click', () => {
