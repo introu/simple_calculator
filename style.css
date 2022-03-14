@@ -107,6 +107,7 @@ body {
     border-top-style: none;
     border-width: 0.3vmin;
     padding-right: 1vmin;
+    font-size: 3.5vmin;
 }
 
 .clear, .back {
