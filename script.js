@@ -33,6 +33,24 @@ const topScreen = document.getElementById('topScreen')
 const equalsButton = document.getElementById('equals')
 const clearButton = document.getElementById('clear')
 const backButton = document.getElementById('back')
+const numberOne = document.querySelector('#one')
+const numberTwo = document.querySelector('#two')
+const numberThree = document.querySelector('#three')
+const numberFour = document.querySelector('#four')
+const numberFive = document.querySelector('#five')
+const numberSix = document.querySelector('#six')
+const numberSeven = document.querySelector('#seven')
+const numberEight = document.querySelector('#eight')
+const numberNine = document.querySelector('#nine')
+const numberZero = document.querySelector('#zero')
+const operationDivide = document.querySelector('#divide')
+const operationMultiply = document.querySelector('#multiply')
+const operationAdd = document.querySelector('.add')
+const operationSubtract = document.querySelector('#subtract')
+const decimalPoint = document.querySelector('#decimal')
+
+
+
 
 let operatedValue = '';
 let valueToOperate = '';
@@ -52,8 +70,7 @@ document.querySelectorAll('.number').forEach(item => {
                 return
             }
             screen.innerText += item.innerText
-        }
-        else {
+        } else {
             screen.innerText = item.innerText
             totallyEvaluated = 0
         }
@@ -108,3 +125,67 @@ backButton.addEventListener('click', () => {
         screen.innerText = '0'
     }
 })
+
+document.onkeydown = function(e) {
+    console.log(e)
+    switch (e.key) {
+        case '1':
+            numberOne.click()
+            break;
+        case '2':
+            numberTwo.click()
+            break;
+        case '3':
+            numberThree.click()
+            break;
+        case '4':
+            numberFour.click()
+            break;
+        case '5':
+            numberFive.click()
+            break;
+        case '6':
+            numberSix.click()
+            break;
+        case '7':
+            numberSeven.click()
+            break;
+        case '8':
+            numberEight.click()
+            break;
+        case '9':
+            numberNine.click()
+            break;
+        case '0':
+            numberZero.click()
+            break;
+        case '/':
+            operationDivide.click()
+            break;
+        case '*':
+            operationMultiply.click()
+            break;
+        case '+':
+            operationAdd.click()
+            break;
+        case '-':
+            operationSubtract.click()
+            break;
+        case 'Enter':
+            equalsButton.click()
+            break;
+        case '=':
+            equalsButton.click()
+            break;
+        case 'Backspace':
+            backButton.click()
+            break;
+        case 'Delete':
+            clearButton.click()
+            break;
+        case '.':
+            decimalPoint.click()
+            break;
+    }
+
+}
