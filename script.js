@@ -42,6 +42,7 @@ let result
 
 document.querySelectorAll('.number').forEach(item => {
     item.addEventListener('click', () => {
+        if (screen.innerText.length > 15) return
         if (!totallyEvaluated) {
             if (screen.innerText === '0' && item.innerText !== '.') {
                 screen.innerText = item.innerText;
