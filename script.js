@@ -40,17 +40,14 @@ let desiredOperation
 
 document.querySelectorAll('.number').forEach(item => {
     item.addEventListener('click', () => {
-        if (screen.innerText === '0' && item.textContent === '0') {
-
-        } else if (screen.innerText === '0' && item.textContent === '.') {
-            screen.innerText += item.textContent
-
-        } else if (screen.innerText === '0' && item.textContent !== '0') {
+        if (screen.innerText === '0' && item.textContent !== '.') {
             screen.innerText = item.textContent;
-
-        } else if (screen.innerText.includes('.') && item.textContent === '.') {
-        } else screen.innerText += item.textContent;
-
+            return;
+        }
+        if (screen.innerText.includes('.') && item.textContent === '.') {
+            return
+        }
+        screen.innerText += item.textContent
     })
 })
 
@@ -67,7 +64,7 @@ document.querySelectorAll('.operate').forEach((item => {
             screen.innerText = '0'
         }
         desiredOperation = item.id
-})
+    })
 }))
 
 clearButton.addEventListener('click', () => {
