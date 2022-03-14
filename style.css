@@ -19,7 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #cccccc;
-    width: 46vmin;
+    width: 47vmin;
     height: 15vmin;
     padding: 1vmin;
     border-radius: 1vmin 1vmin 0 0;
@@ -33,7 +33,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #cccccc;
-    width: 46vmin;
+    width: 47vmin;
     height: 6vmin;
     padding: 1vmin;
     gap: 1vmin;
@@ -44,6 +44,7 @@ body {
 
 #calculator {
     display: grid;
+    width: 47vmin;
     grid-template-columns: repeat(4, 10vmin);
     grid-template-rows: repeat(4, 10vmin);
     background-color: #cccccc;
@@ -73,15 +74,37 @@ body {
 .operation:active {
     background-color: #4C4C4C;
 }
-#screen {
+
+#screenDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#topScreen {
     background-color: #b2b0b0;
-    border-radius: 1vmin;
+    border-radius: 1vmin 1vmin 0 0;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    width: 48vmin;
-    height: 13vmin;
+    width: 44vmin;
+    height: 12vmin;
     border-style: solid;
+    border-bottom-style: none;
+    border-width: 0.3vmin;
+    padding-right: 1vmin;
+    font-size: 2.5vmin;
+}
+
+#screen {
+    background-color: #b2b0b0;
+    border-radius: 0 0 1vmin 1vmin;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 44vmin;
+    height: 12vmin;
+    border-style: solid;
+    border-top-style: none;
     border-width: 0.3vmin;
     padding-right: 1vmin;
 }
